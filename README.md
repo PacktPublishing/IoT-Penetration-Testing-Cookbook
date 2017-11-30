@@ -15,12 +15,12 @@ The code will look like the following:
 
 Following are the software requirements for this book:
 * Microsoft Threat Modeling Tool 2016
-* Binwalk, Firmadyne, Firmwalker, Angr (optional), Firmware-mod-toolkit, Firmware analysis toolkit, GDB, Radare2 (optional), Binary Analysis Tool (BAT),
-Qemu, IDA Pro (optional)
+* Binwalk, Firmadyne, Firmwalker, Angr (optional), Firmware-mod-toolkit, Firmware analysis toolkit, GDB, Radare2 (optional), Binary Analysis Tool (BAT), Qemu, IDA Pro (optional)
 * Burp Suite, OWASP ZAP
-* Mobile Security Framework (MobSF), Idb, SQLite Browser
-3.10.1, Cydia, openURL, dumpdecrypted, ipainstaller, SSL Kill Switch 2, Clutch2, Cycript, JD-GUI, Hopper
-* RTL-SDR
+* Mobile Security Framework (MobSF), Idb, SQLite Browser 
+3.10.1, Cydia, openURL, dumpdecrypted, ipainstaller, SSL Kill Switch
+2, Clutch2, Cycript, JD-GUI, Hopper
+8 RTL-SDR
 * Node security project (Nsp), Retirejs, Dependency-check, flawfinder, Jenkins
 2.60.3
 
@@ -30,9 +30,9 @@ Following are the hardware requirements for this book:
 ## Related Products
 * [Azure IoT Development Cookbook](https://www.packtpub.com/virtualization-and-cloud/azure-iot-development-cookbook?utm_source=github&utm_medium=repository&utm_campaign=9781787283008)
 
-* [Intelligent IoT Projects in 7 Days](https://www.packtpub.com/hardware-and-creative/intelligent-iot-projects-7-days?utm_source=github&utm_medium=repository&utm_campaign=9781787286429)
-
 * [IoT Projects with Bluetooth Low Energy](https://www.packtpub.com/hardware-and-creative/iot-projects-bluetooth-low-energy?utm_source=github&utm_medium=repository&utm_campaign=9781788399449)
+
+* [Intelligent IoT Projects in 7 Days](https://www.packtpub.com/hardware-and-creative/intelligent-iot-projects-7-days?utm_source=github&utm_medium=repository&utm_campaign=9781787286429)
 
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
