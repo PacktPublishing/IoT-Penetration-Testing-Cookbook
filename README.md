@@ -23,6 +23,7 @@ Qemu, IDA Pro (optional)
 * RTL-SDR
 * Node security project (Nsp), Retirejs, Dependency-check, flawfinder, Jenkins
 2.60.3
+
 Following are the hardware requirements for this book:
 * Attify Badge (alternatively, a combination of C232HM-DDHSL-0 cable and Adafruit FTDI Breakout), Salae Logic Sniffer (8-Channel), RzRaven USB Stick flashed with KillerBee framework, JTAGulator, Xbee with Xbee Shield, Ubertooth, BLE adapter
 
