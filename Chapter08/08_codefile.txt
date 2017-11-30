@@ -1,0 +1,130 @@
+#include <stdio.h>
+int main () {
+    char userid[8];
+    int allow = 0;
+    printf external link("Enter your userID, please: ");
+    gets(userid); 
+    if (grantAccess(userid)) {
+        allow = 1;
+    }
+    if (allow != 0) { 
+        privilegedAction();
+    }
+    return 0;
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#define LENGTH 8
+int main () {
+    char* userid, *nlptr;
+    int allow = 0;
+ 
+    userid = malloc(LENGTH * sizeof(*userid));
+    if (!userid)
+        return EXIT_FAILURE;
+    printf external link("Enter your userid, please: ");
+    fgets(userid,LENGTH, stdin);
+    nlptr = strchr(userid, '\n');
+    if (nlptr) *nlptr = '\0';
+ 
+    if (grantAccess(userid)) {
+        allow = 1;
+    }
+    if (allow != 0) {
+        priviledgedAction();
+    }
+ 
+    free(userid);
+ 
+    return 0;
+}
+
+#include <stdlib.h>
+ 
+void func(void) {
+  system("rm ~/.cfg");
+}
+
+
+#include <pwd.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+void func(void) {
+  const char *file_format = "%s/.cfg";
+  size_t len;
+  char *pathname;
+  struct passwd *pwd;
+ 
+  pwd = getpwuid(getuid());
+  if (pwd == NULL) {
+    /* Handle error */
+  }
+  
+  len = strlen(pwd->pw_dir) + strlen(file_format) + 1;
+  pathname = (char *)malloc(len);
+  if (NULL == pathname) {
+    /* Handle error */
+  }
+  int r = snprintf(pathname, len, file_format, pwd->pw_dir);
+  if (r < 0 || r >= len) {
+    /* Handle error */
+  }
+  if (unlink(pathname) != 0) {
+    /* Handle error */
+  }
+ 
+  free(pathname);
+}
+
+
+char *key;
+
+/* Initialize secret */
+
+char *new_key;
+size_t size = strlen(key);
+if (size == SIZE_MAX) {
+  /* Handle error */
+}
+
+new_key = (char *)malloc(size+1);
+if (!new_key) {
+  /* Handle error */
+}
+strcpy(new_key, key);
+
+/* Process new_key... */
+
+free(new_key);
+new_key = NULL;
+
+
+char *key;
+
+/* Initialize secret */
+
+char *new_key;
+size_t size = strlen(key);
+if (size == SIZE_MAX) {
+  /* Handle error */
+}
+
+/* Use calloc() to zero-out space */
+new_key = (char *)calloc(size+1, sizeof(char));
+if (!new_key) {
+  /* Handle error */
+}
+strcpy(new_key, key);
+
+/* Process new_key... */
+
+/* Sanitize memory  */
+memset_s(new_key, '\0', size);
+free(new_secret);
+new_key = NULL;
+

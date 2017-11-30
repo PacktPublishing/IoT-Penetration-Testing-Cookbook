@@ -1,0 +1,57 @@
+$ bash enjarify.sh com.subaru.telematics.app.remote.apk 
+
+
+
+$ xcode-select -install
+
+
+
+$ mv MySubaru.ipa MySubaru.zip
+$unzip MySubaru.zip
+$cd Payload/MySubaru.app/
+$ otool -l MySubaru | grep -A 4 cryptid
+
+
+
+# scp -v '/private/var/mobile/Documents/Dumped/com.subaru-global.infotainment.gen2-iOS6.1-(Clutch-2.0 RC4).ipa' 
+
+
+
+$ mv com.subaru-global.infotainment.gen2-iOS6.1-\(Clutch-2.0\ RC4\).ipa com.subaru-global.infotainment.gen2-iOS6.1-\(Clutch-2.0\ RC4\).zip 
+
+
+
+$ unzip com.subaru-global.infotainment.gen2-iOS6.1-\(Clutch-2.0\ RC4\).zip 
+
+
+
+$ cd Payload/STARLINK.app/ 
+$ ls -lah STARLINK
+
+
+
+$ python manage.py runserver
+
+
+
+# adb devices
+
+
+
+# adb shell
+shell@flo:/ $ su
+root@flo:/ #
+
+
+
+# cd data/data/com.skybell.app/
+# ls -al
+
+
+
+adb pull data/data/com.skybell.app/files/default.realm /path/to/store/realdb
+
+
+
+$ python -m SimpleHTTPServer 1111
+

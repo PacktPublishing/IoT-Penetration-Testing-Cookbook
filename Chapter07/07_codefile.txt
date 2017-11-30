@@ -1,0 +1,16 @@
+#include <SoftwareSerial.h>
+
+int a = 0;
+SoftwareSerial mySerial(2, 3); 
+
+void setup() {
+Serial.begin(2400);
+}
+
+void loop() {
+Serial.println("5e87bb4a6cdef053fde67ea9711d51f3");
+Serial.println(a);
+a++;
+}
+
+

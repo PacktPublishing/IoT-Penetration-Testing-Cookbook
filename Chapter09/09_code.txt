@@ -1,0 +1,97 @@
+public class SQLCipherExampleActivity extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        InitSQLCipher();
+    }
+
+    private void InitSQLCipher() {
+        SQLiteDatabase.loadLibs(this);
+        File databaseFile = getDatabasePath("EncStorage.db");
+        databaseFile.mkdirs();
+        databaseFile.delete();
+        SQLiteDatabase secureDatabase = SQLiteDatabase.openOrCreateDatabase(databaseFile, "PacktDB", null);
+        secureDatabase.execSQL("CREATE TABLE IF NOT EXISTS Accounts(Username VARCHAR,Password VARCHAR);");
+        secureDatabase.execSQL("INSERT INTO Accounts VALUES('PacktUser','EncPassword');");
+         secureDatabase.close();   
+   }
+}
+
+
+
+public class KeyPinStore {
+
+    private static KeyPinStore instance = null;
+    private SSLContext sslContext = SSLContext.getInstance("TLS");
+
+    public static synchronized KeyPinStore getInstance() throws CertificateException, IOException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException{
+        if (instance == null){
+            instance = new KeyPinStore();
+        }
+        return instance;
+    }
+
+private KeyPinStore() throws CertificateException, IOException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException{
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        // TrustedCompanyCA.crt.crt should be in the Assets directory
+        InputStream caInput = new BufferedInputStream(MainActivity.context.getAssets().open("TrustedCompanyCA.crt"));
+        Certificate ca;
+        try {
+            ca = cf.generateCertificate(caInput);
+            System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+        } finally {
+            caInput.close();
+        }
+String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, null);
+        keyStore.setCertificateEntry("ca", ca);
+String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+        tmf.init(keyStore);
+sslContext.init(null, tmf.getTrustManagers(), null);
+    }
+
+    public SSLContext getContext(){
+        return sslContext;
+    }
+URL url = new URL("https://example.com/rest/apiEndpoint");
+HttpsURLConnection urlConnection =
+    (HttpsURLConnection)url.openConnection();
+urlConnection.setSSLSocketFactory(context.getSocketFactory());
+InputStream in = urlConnection.getInputStream();
+copyInputStreamToOutputStream(in, System.out);
+
+
+#import "ViewController.h"
+#import <WebKit/WebKit.h>
+@interface ViewController ()<WKNavigationDelegate,WKUIDelegate>
+@property(strong,nonatomic) WKWebView *webView;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+
+    NSURL *url = [NSURL URLWithString:@"https://www.packtpub.com/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    WKPreferences *pref = [[WKPreferences alloc] init];
+
+    [pref setJavaScriptEnabled:NO];
+    [pref setJavaScriptCanOpenWindowsAutomatically:NO];
+
+    WKWebViewConfiguration *conf = [[WKWebViewConfiguration alloc] init];
+    [conf setPreferences:pref];
+    _webView = [[WKWebView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x,85, self.view.frame.size.width, self.view.frame.size.height-85) configuration:conf] ;
+    [_webView loadRequest:request];
+    [self.view addSubview:_webView];
+
+}
+WebView webview = new WebView(this);
+WebSettings webSettings = webview.getSettings();
+webSettings.setJavaScriptEnabled(false);
+setContentView(webview);
+webview.loadUrl("https://www.packetpub.com/");
+
+
